@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "OnlineSubsystem.h"
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
 #include "UE5_FPSCharacter.generated.h"
@@ -69,5 +70,22 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+	UFUNCTION(BlueprintCallable)
+	void OpenLobby();
+
+	UFUNCTION(BlueprintCallable)
+	void CallOpenLevel(const FString& Address);
+
+	UFUNCTION(BlueprintCallable)
+	void CallClientTravel(const FString& Address);
+
+public:
+
+	// Pointer to the online session interface
+	IOnlineSessionPtr OnlineSessionInterface;
+	// TSharedPtr<class IOnlineSubsystem, ESPMode::ThreadSafe>OnlineSessionInterface;
 };
+
+
 
